@@ -1,13 +1,15 @@
-# Math Operators
+---
+description: How to use the requests module to access APIs
+---
 
+# Requests & APIs
 
+For this example, we'll be using GitHub's API. In a lot of API tutorials, they use the curl command. For me, this was confusing because I'm working mostly with Python.  So for example: `curl https://api.github.com/zen`
 
-| Operator          | Description                                                                                                                                                                                                                                                   | Example                                                   |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| + Addition        | Adds values on either side of the operator.                                                                                                                                                                                                                   | a + b = 30                                                |
-| - Subtraction     | Subtracts right hand operand from left hand operand.                                                                                                                                                                                                          | a – b = -10                                               |
-| \* Multiplication | Multiplies values on either side of the operator                                                                                                                                                                                                              | a \* b = 200                                              |
-| / Division        | Divides left hand operand by right hand operand                                                                                                                                                                                                               | b / a = 2                                                 |
-| % Modulus         | Divides left hand operand by right hand operand and returns remainder                                                                                                                                                                                         | b % a = 0                                                 |
-| \*\* Exponent     | Performs exponential (power) calculation on operators                                                                                                                                                                                                         | a\*\*b =10 to the power 20                                |
-| //                | Floor Division - The division of operands where the result is the quotient in which the digits after the decimal point are removed. But if one of the operands is negative, the result is floored, i.e., rounded away from zero (towards negative infinity) − | 9//2 = 4 and 9.0//2.0 = 4.0, -11//3 = -4, -11.0//3 = -4.0 |
+```python
+>>> import requests 
+>>> response = requests.get("https://api.github.com/zen")
+>>> print(response)
+<Response [200]>
+```
+
