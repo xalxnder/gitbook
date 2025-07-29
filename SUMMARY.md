@@ -2,10 +2,10 @@
 
 ## Python 🐍
 
-* [Json](README.md)
-* [Math Operators](python/math-operators.md)
+* [Math Operators](README.md)
 * [Terms](python/terms.md)
 * [Page 4](python/page-4.md)
+* [Json](<README (1).md>)
 
 ***
 
