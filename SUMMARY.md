@@ -22,3 +22,4 @@
 
 * [Docker](docker/README.md)
   * [Secrets](docker/secrets.md)
+  * [Cheat Sheet](docker/cheat-sheet.md)
