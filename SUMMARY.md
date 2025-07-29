@@ -21,5 +21,5 @@
 ***
 
 * [Docker](docker/README.md)
-  * [Secrets](docker/secrets.md)
+  * [Using Docker Secrets in Compose](docker/using-docker-secrets-in-compose.md)
   * [Cheat Sheet](docker/cheat-sheet.md)
