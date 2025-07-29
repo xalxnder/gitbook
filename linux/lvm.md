@@ -86,4 +86,12 @@ The `vgextend` command is used to add storage to a volume group, and the `vgredu
 
 ### Resizing Logical Volumes and File Systems
 
-Logical volumes can be extended with the `lvextend` command. This command has a very useful option -r to take care of extending the file systems on the logical volume at the same time; it is recommended to use this option and not the alternative approach that separately extends the logical volumes and the file systems on top of the logical volumes. The easiest and most intuitive way to do that is by using -L followed by a + sign and the amount of disk space you want to add, as in `lvresize -L +1G -r /dev/vgdata/lvdata`.
+Logical volumes can be extended with the `lvextend` command. This command has a very useful option -r to take care of extending the file systems on the logical volume at the same time; it is recommended to use this option and not the alternative approach that separately extends the logical volumes and the file systems on top of the logical volumes.&#x20;
+
+&#x20;
+
+```bash
+lvextend -L +1G -r /dev/vgdata/lvdata     # -L To add a specifc amount
+lvextend -l +100%FREE -r /dev/vgdata/lvdata     # -l To add a percentage
+```
+
