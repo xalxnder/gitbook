@@ -1,7 +1,6 @@
 # Table of contents
 
-* [Requests & APIs](README.md)
-* [Docker](docker/README.md)
+* [Docker](README.md)
   * [Using Docker Secrets in Compose](docker/using-docker-secrets-in-compose.md)
   * [Compose Cheat Sheet](docker/compose-cheat-sheet.md)
   * [Volumes](docker/volumes.md)
@@ -21,3 +20,5 @@
   * [Certificates](networking/certificates.md)
 * [Databases](databases/README.md)
   * [PSQL Cheat Sheet](databases/psql-cheat-sheet.md)
+* [Python](python/README.md)
+  * [Requests & APIs](python/requests-and-apis.md)
