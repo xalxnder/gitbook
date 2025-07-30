@@ -5,6 +5,7 @@
   * [Using Docker Secrets in Compose](docker/using-docker-secrets-in-compose.md)
   * [Compose Cheat Sheet](docker/compose-cheat-sheet.md)
   * [Volumes](docker/volumes.md)
+  * [Traefik](docker/traefik.md)
 * [Linux](linux/README.md)
   * [LVM](linux/lvm.md)
   * [Journal](linux/journal.md)
