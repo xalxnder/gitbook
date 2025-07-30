@@ -1,4 +1,5 @@
 ---
+icon: lightbulb
 layout:
   width: wide
   title:
@@ -15,7 +16,7 @@ layout:
     visible: true
 ---
 
-# Cheat Sheet
+# Compose Cheat Sheet
 
 
 
