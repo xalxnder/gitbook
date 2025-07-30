@@ -22,3 +22,4 @@
   * [PSQL Cheat Sheet](databases/psql-cheat-sheet.md)
 * [Python](python/README.md)
   * [Requests & APIs](python/requests-and-apis.md)
+* [Setting up Remote Server For VS Code](setting-up-remote-server-for-vs-code.md)
