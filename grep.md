@@ -4,7 +4,7 @@
 
 This is the ultimate utility to use WITH regex
 
-> \[!TIP] When using grep with regular expression, wrap the regex in quotes.
+> 💡 When using grep with regular expression, wrap the regex in quotes.
 
 | Option | Use                                                             |
 | ------ | --------------------------------------------------------------- |
