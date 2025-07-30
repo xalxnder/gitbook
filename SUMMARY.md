@@ -15,4 +15,7 @@
   * [Screen Command](linux/screen-command.md)
 * [Networking](networking/README.md)
   * [Cheat Sheet](networking/cheat-sheet.md)
+  * [Certificates](networking/certificates.md)
 * [Archiving](archiving.md)
+* [Databases](databases/README.md)
+  * [PSQL Cheat Sheet](databases/psql-cheat-sheet.md)
