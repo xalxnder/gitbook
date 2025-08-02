@@ -23,5 +23,6 @@
 * [Python](python/README.md)
   * [Requests & APIs](python/requests-and-apis.md)
 * [Setting up Remote Server For VS Code](setting-up-remote-server-for-vs-code.md)
-* [Troubleshooting](troubleshooting.md)
+* [Troubleshooting](troubleshooting/README.md)
+  * [Longhorn](troubleshooting/longhorn.md)
 * [Longhorn](longhorn.md)
