@@ -1,49 +1,84 @@
 ---
-description: Traefik configuration to highlight certificate handeling.
 icon: traffic-light
 ---
 
 # Traefik
 
-
+Traefik service example. Full list of cli flags can be found [here](https://doc.traefik.io/traefik/reference/static-configuration/cli/).
 
 {% code fullWidth="true" %}
 ```yaml
 services:
 
   traefik:
-    image: "traefik:v3.5"  # Use Traefik version 3.5
-    container_name: "traefik"  # Name the container "traefik"
+    image: "traefik:v3.5"
+    
+    # Name the container "traefik"
+    container_name: "traefik"
 
     command:
-      #- "--log.level=DEBUG"  # Uncomment for detailed Traefik logs (useful for troubleshooting)
-      - "--api.insecure=true"  # Enable the Traefik web UI (dashboard) on port 8080 (insecure, for local use only)
-      - "--providers.docker=true"  # Enable Docker provider to discover containers with labels
-      - "--providers.docker.exposedbydefault=false"  # Only expose containers with traefik.enable=true
-      - "--entryPoints.websecure.address=:443"  # Define an entry point named "websecure" listening on port 443
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"  # Use TLS challenge for Let's Encrypt certificate resolution
+      # Uncomment for detailed Traefik logs (useful for troubleshooting)
+      #- "--log.level=DEBUG"
+
+      # Enable the Traefik web UI (dashboard) on port 8080 (insecure, for local use only)
+      - "--api.insecure=true"
+
+      # Enable Docker provider to discover containers with labels
+      - "--providers.docker=true"
+
+      # Only expose containers with traefik.enable=true
+      - "--providers.docker.exposedbydefault=false"
+
+      # Define an entry point named "websecure" listening on port 443
+      - "--entryPoints.websecure.address=:443"
+
+      # Use TLS challenge for Let's Encrypt certificate resolution
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+
+      # Use Let's Encrypt staging server for testing (prevents rate limiting, uncomment if testing)
       #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-        # Use Let's Encrypt staging server for testing (prevents rate limiting, uncomment if testing). 
-      - "--certificatesresolvers.myresolver.acme.email=postmaster@example.com"  # Email used for Let's Encrypt registration
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"  # Where Traefik stores certificates
+
+      # Email used for Let's Encrypt registration
+      - "--certificatesresolvers.myresolver.acme.email=postmaster@example.com"
+
+      # Sets a number of seconds to wait before checking the DNS challenge TXT record for actual propagation
+      - "--certificatesresolvers.cloudflare.acme.dnschallenge.propagation.delaybeforechecks=30"
+
+      # Where Traefik stores certificates
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
 
     ports:
-      - "443:443"  # Expose HTTPS (websecure entrypoint) to the host
-      - "8080:8080"  # Expose Traefik dashboard (if api.insecure=true)
+      # Expose HTTPS (websecure entrypoint) to the host
+      - "443:443"
+
+      # Expose Traefik dashboard (if api.insecure=true)
+      - "8080:8080"
 
     volumes:
-      - "./letsencrypt:/letsencrypt"  # Mount host directory to persist Let's Encrypt certs (stored in acme.json)
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"  # Give Traefik read-only access to Docker socket
+      # Mount host directory to persist Let's Encrypt certs (stored in acme.json)
+      - "./letsencrypt:/letsencrypt"
+
+      # Give Traefik read-only access to Docker socket
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   whoami:
-    image: "traefik/whoami"  # A simple web service that returns request info
-    container_name: "simple-service"  # Name this container
+    image: "traefik/whoami"
+
+    # Name this container
+    container_name: "simple-service"
 
     labels:
-      - "traefik.enable=true"  # Enable this service to be picked up by Traefik
-      - "traefik.http.routers.whoami.rule=Host(`whoami.example.com`)"  # Route traffic with this hostname
-      - "traefik.http.routers.whoami.entrypoints=websecure"  # Use the "websecure" entry point (HTTPS)
-      - "traefik.http.routers.whoami.tls.certresolver=myresolver"  # Use the defined certificate resolver to get certs
+      # Enable this service to be picked up by Traefik
+      - "traefik.enable=true"
+
+      # Route traffic with this hostname
+      - "traefik.http.routers.whoami.rule=Host(`whoami.example.com`)"
+
+      # Use the "websecure" entry point (HTTPS)
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+
+      # Use the defined certificate resolver to get certs
+      - "traefik.http.routers.whoami.tls.certresolver=myresolver"
 ```
 {% endcode %}
 
@@ -51,4 +86,4 @@ services:
 
 ### Testing Certs
 
-> If you uncommented the `acme.caserver` line, you will get an SSL error, but if you display the certificate and see it was emitted by `Fake LE Intermediate X1` then it means all is good. (It is the staging environment intermediate certificate used by Let's Encrypt). You can now safely comment the `acme.caserver` line, remove the `letsencrypt/acme.json` file and restart Traefik to issue a valid certificate.
+> If you un-commented the `acme.caserver` line, you will get an SSL error, but if you display the certificate and see it was emitted by `Fake LE Intermediate X1` then it means all is good. (It is the staging environment intermediate certificate used by Let's Encrypt). You can now safely comment the `acme.caserver` line, remove the `letsencrypt/acme.json` file and restart Traefik to issue a valid certificate.
