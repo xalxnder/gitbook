@@ -6,6 +6,7 @@ icon: traffic-light
 
 
 
+{% code fullWidth="true" %}
 ```yaml
 services:
 
@@ -43,3 +44,4 @@ services:
       - "traefik.http.routers.whoami.entrypoints=websecure"  # Use the "websecure" entry point (HTTPS)
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"  # Use the defined certificate resolver to get certs
 ```
+{% endcode %}
