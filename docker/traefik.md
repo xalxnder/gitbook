@@ -1,4 +1,5 @@
 ---
+description: Traefik configuration to highlight certificate handeling.
 icon: traffic-light
 ---
 
@@ -22,7 +23,7 @@ services:
       - "--entryPoints.websecure.address=:443"  # Define an entry point named "websecure" listening on port 443
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"  # Use TLS challenge for Let's Encrypt certificate resolution
       #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-        # Use Let's Encrypt staging server for testing (prevents rate limiting, uncomment if testing)
+        # Use Let's Encrypt staging server for testing (prevents rate limiting, uncomment if testing). 
       - "--certificatesresolvers.myresolver.acme.email=postmaster@example.com"  # Email used for Let's Encrypt registration
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"  # Where Traefik stores certificates
 
@@ -31,7 +32,7 @@ services:
       - "8080:8080"  # Expose Traefik dashboard (if api.insecure=true)
 
     volumes:
-      - "./letsencrypt:/letsencrypt"  # Persist Let's Encrypt certs on host
+      - "./letsencrypt:/letsencrypt"  # Mount host directory to persist Let's Encrypt certs (stored in acme.json)
       - "/var/run/docker.sock:/var/run/docker.sock:ro"  # Give Traefik read-only access to Docker socket
 
   whoami:
@@ -45,3 +46,9 @@ services:
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"  # Use the defined certificate resolver to get certs
 ```
 {% endcode %}
+
+
+
+### Testing Certs
+
+> If you uncommented the `acme.caserver` line, you will get an SSL error, but if you display the certificate and see it was emitted by `Fake LE Intermediate X1` then it means all is good. (It is the staging environment intermediate certificate used by Let's Encrypt). You can now safely comment the `acme.caserver` line, remove the `letsencrypt/acme.json` file and restart Traefik to issue a valid certificate.
