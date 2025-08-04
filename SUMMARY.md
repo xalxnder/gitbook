@@ -18,6 +18,7 @@
 * [Networking](networking/README.md)
   * [Cheat Sheet](networking/cheat-sheet.md)
   * [Certificates](networking/certificates.md)
+  * [🌐 ACME Certificate Flow: High-Level Overview](networking/acme-certificate-flow-high-level-overview.md)
 * [Databases](databases/README.md)
   * [PSQL Cheat Sheet](databases/psql-cheat-sheet.md)
 * [Python](python/README.md)
